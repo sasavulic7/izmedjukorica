@@ -42,7 +42,7 @@ const HomePage = () => {
         <div className="absolute inset-0 backgroundImage: `url(${homeImage})` bg-opacity-50"></div>{" "}
         {/* Gradient overlay */}
         <div className="relative z-10 px-6">
-          <h1 className="text-5xl font-bold mb-4">Dobrodošli na Knjige Blog</h1>
+          <h1 className="text-5xl font-bold mb-4">Između Korica</h1>
           <p className="text-xl mb-6">
             Otkrijte nove knjige i podelite svoje utiske sa zajednicom.
           </p>
