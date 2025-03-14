@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from "../api/api-config";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -20,10 +20,7 @@ const ContactPage = () => {
     setStatus(null);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/contact",
-        formData
-      );
+      const response = await api.post("/contact", formData);
       if (response.data.success) {
         setStatus("Uspešno poslato!");
         setFormData({ name: "", email: "", message: "" });
