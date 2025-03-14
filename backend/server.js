@@ -10,7 +10,7 @@ const app = express();
 // Ispravljena CORS konfiguracija
 app.use(
   cors({
-    origin: "https://izmedjukorica-9vte.vercel.app/", // Vaš frontend origin
+    origin: "izmedjukorica-blog-vte.vercel.app", // Vaš frontend origin
     credentials: true
   })
 );
