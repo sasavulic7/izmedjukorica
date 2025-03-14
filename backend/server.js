@@ -10,7 +10,7 @@ const app = express();
 // Ispravljena CORS konfiguracija
 app.use(
   cors({
-    origin: "http://localhost:5173", // Vaš frontend origin
+    origin: "https://izmedjukorica-9vte.vercel.app/", // Vaš frontend origin
     credentials: true
   })
 );
