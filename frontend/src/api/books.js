@@ -1,51 +1,62 @@
-import API from "./index";
+import api from "./api-config";
 
+// Funkcije za operacije sa knjigama
 export const getAllBooks = async () => {
-  const response = await API.get("/books");
-  return response.data;
+  try {
+    const response = await api.get("/books");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    throw error;
+  }
 };
 
 export const getBookById = async (id) => {
-  const response = await API.get(`/books/${id}`);
-  return response.data;
+  try {
+    const response = await api.get(`/books/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching book ${id}:`, error);
+    throw error;
+  }
 };
 
 export const createBook = async (bookData) => {
-  const token = localStorage.getItem("token");
-  const response = await API.post("/books", bookData, {
-    headers: {
-      "x-auth-token": token
-    }
-  });
-  return response.data;
+  try {
+    const response = await api.post("/books", bookData);
+    return response.data;
+  } catch (error) {
+    console.error("Error creating book:", error);
+    throw error;
+  }
 };
 
-export const deleteBook = async (bookId) => {
-  const token = localStorage.getItem("token");
-  const response = await API.delete(`/books/${bookId}`, {
-    headers: {
-      "x-auth-token": token
-    }
-  });
-  return response.data;
+export const deleteBook = async (id) => {
+  try {
+    const response = await api.delete(`/books/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error deleting book ${id}:`, error);
+    throw error;
+  }
 };
 
 export const addReview = async (bookId, reviewData) => {
-  const token = localStorage.getItem("token");
-  const response = await API.post(`/books/${bookId}/review`, reviewData, {
-    headers: {
-      "x-auth-token": token
-    }
-  });
-  return response.data;
+  try {
+    const response = await api.post(`/books/${bookId}/reviews`, reviewData);
+    return response.data;
+  } catch (error) {
+    console.error(`Error adding review to book ${bookId}:`, error);
+    throw error;
+  }
 };
 
 export const deleteReview = async (reviewId) => {
-  const token = localStorage.getItem("token");
-  const response = await API.delete(`/books/review/${reviewId}`, {
-    headers: {
-      "x-auth-token": token
-    }
-  });
-  return response.data;
+  try {
+    const response = await api.delete(`/reviews/${reviewId}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error deleting review ${reviewId}:`, error);
+    throw error;
+  }
 };
