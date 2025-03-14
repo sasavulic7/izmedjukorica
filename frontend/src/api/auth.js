@@ -1,77 +1,59 @@
-import API from "./index";
+import api from "./api-config";
 
-// Postojeće funkcije
+// Funkcije za autentikaciju
 export const login = async (email, password) => {
-  const response = await API.post("/auth/login", { email, password });
-  return response.data;
+  try {
+    const response = await api.post("/auth/login", {
+      email,
+      password,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error during login:", error);
+    throw error;
+  }
 };
 
 export const register = async (username, email, password) => {
-  const response = await API.post("/auth/register", {
-    username,
-    email,
-    password
-  });
-  return response.data;
-};
-
-// Nove funkcije za rad sa profilom
-export const getUserProfile = async () => {
-  const token = localStorage.getItem("token");
-  const response = await API.get("/auth/profile", {
-    headers: {
-      "x-auth-token": token
-    }
-  });
-  return response.data;
+  try {
+    const response = await api.post("/auth/register", {
+      username,
+      email,
+      password,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error during registration:", error);
+    throw error;
+  }
 };
 
 export const getUserBooks = async () => {
-  const token = localStorage.getItem("token");
-  const response = await API.get("/books/user/profile", {
-    headers: {
-      "x-auth-token": token
-    }
-  });
-  return response.data;
+  try {
+    const response = await api.get("/user/books");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user books:", error);
+    throw error;
+  }
 };
 
 export const getUserReviews = async () => {
-  const token = localStorage.getItem("token");
-  const response = await API.get("/auth/user-reviews", {
-    headers: {
-      "x-auth-token": token
-    }
-  });
-  return response.data;
+  try {
+    const response = await api.get("/user/reviews");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user reviews:", error);
+    throw error;
+  }
 };
 
 export const deleteAccount = async () => {
-  const token = localStorage.getItem("token");
-  const response = await API.delete("/auth/delete-account", {
-    headers: {
-      "x-auth-token": token
-    }
-  });
-  return response.data;
-};
-
-export const deleteBook = async (bookId) => {
-  const token = localStorage.getItem("token");
-  const response = await API.delete(`/books/${bookId}`, {
-    headers: {
-      "x-auth-token": token
-    }
-  });
-  return response.data;
-};
-
-export const deleteReview = async (reviewId) => {
-  const token = localStorage.getItem("token");
-  const response = await API.delete(`/books/review/${reviewId}`, {
-    headers: {
-      "x-auth-token": token
-    }
-  });
-  return response.data;
+  try {
+    const response = await api.delete("/user/account");
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting account:", error);
+    throw error;
+  }
 };
