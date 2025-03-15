@@ -20,9 +20,10 @@ const authRoutes = require("./routes/authRoutes");
 const bookRoutes = require("./routes/bookRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 
-app.use(process.env.API_BASE_URL + "/auth", authRoutes);
-app.use(process.env.API_BASE_URL + "/books", bookRoutes);
-app.use(process.env.API_BASE_URL, contactRoutes);
+// Uklonili smo process.env.API_BASE_URL
+app.use("/auth", authRoutes);
+app.use("/books", bookRoutes);
+app.use("/", contactRoutes); // Promenili smo putanju za contactRoutes
 
 const PORT = process.env.PORT || 5000;
 
