@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 const router = express.Router();
 const dotenv = require("dotenv").config();
 
-router.post("/contact", async (req, res) => {
+router.post("/", async (req, res) => {
     const { name, email, message } = req.body;
 
     if (!name || !email || !message) {
